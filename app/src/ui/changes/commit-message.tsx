@@ -547,6 +547,12 @@ export class CommitMessage extends React.Component<
 
   private async createCommit(options?: ICreateCommitOptions) {
     const { description } = this.state.commitMessage
+    let summary = this.summaryOrPlaceholder // Pega o resumo atual (ou placeholder se vazio e pré-populado)
+
+    if (summary === 'TESTE') {
+      summary = 'MUDADO'
+      console.log("Resumo do commit alterado de 'TESTE' para 'MUDADO'") // Opcional: para ver no console de desenvolvimento
+    }
 
     if (!this.canCommit() && !this.canAmend()) {
       return
